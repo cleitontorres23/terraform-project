@@ -67,7 +67,33 @@ resource "aws_security_group" "allow_nginx" {
   }
 
   tags = {
-    Name = "nginx"
+    Name = "allow_nginx"
+  }
+}
+
+#Create security group to allow load balancer access
+resource "aws_security_group" "allow_alb" {
+  name        = "allow_alb"
+  description = "Allow ALB inbound traffic"
+  vpc_id      = aws_vpc.vpc_main.id
+
+  ingress {
+    description = "Access to ALB"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks =  ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "allow_alb"
   }
 }
 
@@ -91,3 +117,9 @@ resource "aws_network_interface_sg_attachment" "sg_nginx" {
   network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
   count = var.aws_count_instante
   }
+
+resource "aws_network_interface_sg_attachment" "sg_alb" {
+security_group_id         = aws_security_group.allow_alb.id
+network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
+count = var.aws_count_instante
+}
