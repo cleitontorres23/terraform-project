@@ -18,12 +18,13 @@ resource "aws_instance" "webservice" {
 }
 
 ## Create a application load balancer 
-resource "aws_elb" "alb-web" {
+resource "aws_elb" "alb_webservice" {
   name                      = "load-balancer-web"
   internal                  = false
   security_groups           = [aws_security_group.allow_alb.id]
-  availability_zones        = ["us-east-1c", "us-east-1d", "us-east-1e"]
+  availability_zones        = ["us-east-1a", "us-east-1b", "us-east-1c"]
   instances                 = aws_instance.webservice.*.id
+  
 
   listener {
     instance_port     = 80
