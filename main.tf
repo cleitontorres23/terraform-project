@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 # Creating a new instance of the latest Ubuntu 14.04 on an
-resource "aws_instance" "web" {
+resource "aws_instance" "webservice" {
   ami           = lookup(var.ami_web, var.aws_region)
   instance_type = "t2.micro"
   count         = var.aws_count_instante
@@ -12,12 +12,12 @@ resource "aws_instance" "web" {
 
   tags = {
 
-    Name = "Web-${count.index + 1}"
+    Name = "webservice-${count.index + 1}"
   }
 
 }
 
 # This output resource get the public ip in the end of terraform command
 output "ip-web" {
-  value = "${aws_instance.web.*.public_ip}"
+  value = "${aws_instance.webservice.*.public_ip}"
  }
