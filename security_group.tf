@@ -47,16 +47,47 @@ resource "aws_security_group" "allow_ping" {
   }
 }
 
-# Security Group for ssh
+#Create security group to nginx access
+resource "aws_security_group" "allow_nginx" {
+  name        = "allow_nginx"
+  description = "Allow all inbound traffic"
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "nginx"
+  }
+}
+
+# Associate Security Group for ssh to resource webservice
 resource "aws_network_interface_sg_attachment" "sg_ssh" {
   security_group_id         = aws_security_group.allow_ssh.id
-  network_interface_id      = element(aws_instance.web.*.primary_network_interface_id, count.index)
+  network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
   count = var.aws_count_instante
   }
 
-# Security Group for ping command
+# Associate security Group for ping command to resource webservice
 resource "aws_network_interface_sg_attachment" "sg_ping" {
   security_group_id         = aws_security_group.allow_ping.id
-  network_interface_id      = element(aws_instance.web.*.primary_network_interface_id, count.index)
+  network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
+  count = var.aws_count_instante
+  }
+
+# Associate security Group for nginx to resource webservice
+resource "aws_network_interface_sg_attachment" "sg_nginx" {
+  security_group_id         = aws_security_group.allow_nginx.id
+  network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
   count = var.aws_count_instante
   }
