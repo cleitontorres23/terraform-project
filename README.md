@@ -71,3 +71,5 @@ main code with variables, once, all variables together, is easier to get some in
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install
 
 https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/
+
+https://cloudinit.readthedocs.io/en/latest/topics/examples.html
