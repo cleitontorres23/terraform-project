@@ -75,7 +75,9 @@ resource "aws_security_group" "allow_nginx" {
 resource "aws_security_group" "allow_alb" {
   name        = "allow_alb"
   description = "Allow ALB inbound traffic"
-  vpc_id      = aws_vpc.vpc_main.id
+  
+  #vpc_id      = aws_vpc.vpc_main.id
+  #security_groups = 
 
   ingress {
     description = "Access to ALB"
