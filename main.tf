@@ -8,7 +8,7 @@ resource "aws_instance" "webservice" {
   ami           = lookup(var.ami_web, var.aws_region)
   instance_type = "t2.micro"
   count         = var.aws_count_instante
-  user_data     =  file("userdata.yaml")
+  user_data     =  file("cloudconfig.yaml")
 
   tags = {
 
@@ -48,5 +48,5 @@ resource "aws_elb" "alb_webservice" {
 
 # This output resource get the public ip in the end of terraform command
 output "ip-web" {
-  value = "${aws_instance.webservice.*.public_ip}"
+  value = aws_instance.webservice.*.public_ip
  }
