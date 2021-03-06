@@ -1,7 +1,8 @@
 # Terraform - AWS - PROJECT
+![TERRAFORM](https://user-images.githubusercontent.com/23055661/110207384-f73f9980-7e61-11eb-8f33-94324bcc1822.png)
 
-## INFRA STRUCTURE AS A CODE
-This project has as goal to deploy 2 or more ec2 using terraform in the aws environment, in this trip I will let you know some tips and tricks to get the end of the project successfully.
+## PROVISIONING AWS RESOURCES USING TERRAFORM
+This project has as goal to deploy 2 or more ec2 using terraform in the aws environment, in this trip I will let you know some tips to get the end of the project successfully.
 
 ## Technology 
  
@@ -40,20 +41,25 @@ If you do not have python, and it command before have showed to you some error a
 
 Let'go to put apart some components just to help us to understand how the drew is and make the code clear. I hope so!
 
-You are goingo to create this files below:
+You are going to create this files below :
 
-* main.tf
-* variable.tf
-* userdata.tf
-* target_group.tf
-* security_group.tf
-* network.tf
-* terraform_deploy.sh (* not mandatory, just if you want to make you life easier)
+Your directory structure will look similar to the one below.
+
+``` ruby
+├── main.tf
+├── cloudconfig.tf
+├── network.tf
+├── variables.tf
+├── outputs.tf
+├── target_group.tf
+├── security_group.tf
+├── terraform_deploy.sh (* not mandatory, just if you want to make you life easier)
+```
 
 
-# Make these files christal clear
+# Understanding these files 
 
-* main.tf: Normally, you use this file to tell to terraform what do you need it does for you, (i.e: provider, resource)
+* main.tf: It is a best practice use this file to tell to terraform what do you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
 
 ``` ruby
 >    # Creating a provider aws as default
@@ -106,23 +112,61 @@ resource "aws_elb" "alb_webservice" {
 
 # This output resource get the public ip in the end of terraform command
 output "ip-web" {
-  value = "${aws_instance.webservice.*.public_ip}"
+  value = aws_instance.webservice.*.public_ip
  }
 ```
+
+* cloudconfig.tf: 
+
+``` ruby
+#cloud-config
+ssh_authorized_keys:
+  - "ssh-rsa id_rsa.pub key"
+
+runcmd:
+  - sudo -i
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  - sudo apt update -y
+  - sudo apt install docker-ce docker-ce-cli containerd.io -y
+  - sudo systemctl start docker
+  - sudo systemctl enable docker
+  - sudo docker run --name docker-nginx -d --net host nginx 
+
+write_files:
+  - path: /lib/systemd/system/nginx.service
+    permission: '0644'
+    content:  |
+        [Unit]
+        Description=The Nginx Service
+        After=docker.service syslog.target network-online.target remote-fs.target nss-lookup.target 
+        Wants=network-online.target
+        Requires=docker.service
+        
+        [Service]
+        Type=forking
+        PIDFile=/run/nginx.pid   
+        ExecStart=/usr/bin/docker run --name docker-nginx -d --net host -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf  nginx
+        
+        [Install]
+        WantedBy=multi-user.target
+    
+```
+
+
+
+
 
 
 * variable.tf: Thinking about a big organization, all the codes is getting bigger and bigger, and it is not necessary to mix the
 main code with variables, once, all variables together, is easier to get some informations about it.
 
-* userdata.tf: The place where you need to place your ssh authorized keys, it's better you keep this file in secret
-
-
-* network.tf: All the inbound and outbound traffic comes throght the VPC, stands for Amazon (Virtual Private Cloud), so is good for your health be keep in control all the traffic.
+* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services for the rest of your infrastructure.
 
 
 
 
-## Links  :books:
+## References Links  :books:
 
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install
 
@@ -131,3 +175,5 @@ https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/
 https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
 https://www.terraform.io/docs/language/functions
+
+https://www.commandlinux.com/man-page/man5/systemd.service.5.html
