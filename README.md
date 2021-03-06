@@ -177,3 +177,5 @@ https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 https://www.terraform.io/docs/language/functions
 
 https://www.commandlinux.com/man-page/man5/systemd.service.5.html
+
+https://www.nginx.com/resources/wiki/start/topics/examples/systemd/
