@@ -107,7 +107,7 @@ resource "aws_elb" "alb_webservice" {
 
 # This output resource get the public ip in the end of terraform command
 output "ip-web" {
-  value = "${aws_instance.webservice.*.public_ip}"
+  value = aws_instance.webservice.*.public_ip
  }
 ```
 
