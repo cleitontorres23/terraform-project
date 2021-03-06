@@ -1,6 +1,6 @@
 # Terraform - AWS - PROJECT
 
-## INFRA STRUCTURE AS A CODE
+## PROVISIONING AWS RESOURCES USING TERRAFORM
 This project has as goal to deploy 2 or more ec2 using terraform in the aws environment, in this trip I will let you know some tips and tricks to get the end of the project successfully.
 
 ## Technology 
