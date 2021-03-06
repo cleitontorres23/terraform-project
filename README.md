@@ -41,15 +41,20 @@ If you do not have python, and it command before have showed to you some error a
 
 Let'go to put apart some components just to help us to understand how the drew is and make the code clear. I hope so!
 
-You are goingo to create this files below:
+Working with module is a best practice to
+You are goingo to create this files below :
 
-* main.tf
-* variable.tf
-* userdata.tf
-* target_group.tf
-* security_group.tf
-* network.tf
-* terraform_deploy.sh (* not mandatory, just if you want to make you life easier)
+
+``` ruby
+├── main.tf
+├── cloudconfig.tf
+├── network.tf
+├── variables.tf
+├── outputs.tf
+├── target_group.tf
+├── security_group.tf
+├── terraform_deploy.sh (* not mandatory, just if you want to make you life easier)
+```
 
 
 # Understanding these files 
@@ -123,7 +128,7 @@ main code with variables, once, all variables together, is easier to get some in
 
 
 
-## Links  :books:
+## References Links  :books:
 
 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install
 
@@ -132,3 +137,5 @@ https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/
 https://cloudinit.readthedocs.io/en/latest/topics/examples.html
 
 https://www.terraform.io/docs/language/functions
+
+https://www.commandlinux.com/man-page/man5/systemd.service.5.html
