@@ -41,9 +41,9 @@ If you do not have python, and it command before have showed to you some error a
 
 Let'go to put apart some components just to help us to understand how the drew is and make the code clear. I hope so!
 
-Working with module is a best practice to
-You are goingo to create this files below :
+You are going to create this files below :
 
+Your directory structure will look similar to the one below.
 
 ``` ruby
 ├── main.tf
