@@ -52,9 +52,9 @@ You are goingo to create this files below:
 * terraform_deploy.sh (* not mandatory, just if you want to make you life easier)
 
 
-# Make these files christal clear
+# Understanding these files 
 
-* main.tf: Normally, you use this file to tell to terraform what do you need it does for you, (i.e: provider, resource)
+* main.tf: Normally, you use this file to tell to terraform what do you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
 
 ``` ruby
 >    # Creating a provider aws as default
