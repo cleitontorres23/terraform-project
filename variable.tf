@@ -3,7 +3,7 @@ variable "aws_region"{
   default = "us-east-1" 
 }
 
-# Variable to get Image free tier
+# Variable to get Ubuntu Image free tier
 variable "ami_web" {
   type = map
   default = {
