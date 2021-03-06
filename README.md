@@ -2,7 +2,7 @@
 ![TERRAFORM](https://user-images.githubusercontent.com/23055661/110207384-f73f9980-7e61-11eb-8f33-94324bcc1822.png)
 
 ## PROVISIONING AWS RESOURCES USING TERRAFORM
-This project has as goal to deploy 2 or more ec2 using terraform in the aws environment, in this trip I will let you know some tips and tricks to get the end of the project successfully.
+This project has as goal to deploy 2 or more ec2 using terraform in the aws environment, in this trip I will let you know some tips to get the end of the project successfully.
 
 ## Technology 
  
