@@ -1,4 +1,4 @@
-# Terraform - AWS - PROJECT
+# Terraform - AWS
 ![TERRAFORM](https://user-images.githubusercontent.com/23055661/110207384-f73f9980-7e61-11eb-8f33-94324bcc1822.png)
 
 ## PROVISIONING AWS RESOURCES USING TERRAFORM
