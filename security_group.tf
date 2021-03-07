@@ -1,8 +1,8 @@
 #Creating security group to allow ssh access
-
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
+  vpc_id      = aws_vpc.vpc_main.id
   
   ingress {
     description = "SSH from VPC"
@@ -28,7 +28,8 @@ resource "aws_security_group" "allow_ssh" {
 resource "aws_security_group" "allow_ping" {
   name        = "allow_ping"
   description = "Allow ping to test purpose"
-
+  vpc_id      = aws_vpc.vpc_main.id
+  
   ingress {
     from_port   = 0
     to_port     = 0
@@ -51,7 +52,8 @@ resource "aws_security_group" "allow_ping" {
 resource "aws_security_group" "allow_nginx" {
   name        = "allow_nginx"
   description = "Allow all inbound traffic"
-
+  vpc_id      = aws_vpc.vpc_main.id
+  
   ingress {
     from_port   = 443
     to_port     = 443
@@ -75,9 +77,8 @@ resource "aws_security_group" "allow_nginx" {
 resource "aws_security_group" "allow_alb" {
   name        = "allow_alb"
   description = "Allow ALB inbound traffic"
+  vpc_id      = aws_vpc.vpc_main.id
   
-  #vpc_id      = aws_vpc.vpc_main.id
-  #security_groups = 
 
   ingress {
     description = "Access to ALB"
