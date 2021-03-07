@@ -34,6 +34,7 @@ resource "aws_subnet" "subnet" {
   }
 }
 
+#Setting of routes, that are used to determine where network traffic from your subnet or gateway is directed
 resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.vpc_main.id
 
