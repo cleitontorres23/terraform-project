@@ -15,3 +15,11 @@ variable "ami_web" {
 variable "aws_count_instante"{
   default = 2
 }
+
+variable "subnet_cidr"{
+  default = ["10.10.200.0/24", "10.10.100.0/24"]
+}
+
+variable "azs"{
+  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
