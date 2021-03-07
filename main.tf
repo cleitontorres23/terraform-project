@@ -1,3 +1,5 @@
+# Terraform configuration
+
 # Creating a provider aws as default
 provider "aws" {
   region  = var.aws_region
@@ -8,24 +10,26 @@ resource "aws_instance" "webservice" {
   ami           = lookup(var.ami_web, var.aws_region)
   instance_type = "t2.micro"
   count         = var.aws_count_instante
-  user_data     =  file("cloudconfig.yaml")
+  user_data     = data.template_file.init[count.index].rendered
+  subnet_id     = aws_subnet.subnet[count.index].id
+  #route_table_id = aws_route_table.route_table
 
   tags = {
 
     Name = "webservice-${count.index + 1}"
   }
-
 }
 
 ## Create a application load balancer 
 resource "aws_elb" "alb_webservice" {
-  name                      = "load-balancer-web"
-  internal                  = false
-  security_groups           = [aws_security_group.allow_alb.id]
-  availability_zones        = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  instances                 = aws_instance.webservice.*.id
+  name                   = "load-balancer-web"
+  internal               = false
+  security_groups        = [aws_security_group.allow_alb.id]
+  #availability_zones     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  instances              = aws_instance.webservice.*.id
+  subnets                = aws_subnet.subnet.*.id
+  #gateway                 = aws_internet_gateway.gateway
   
-
   listener {
     instance_port     = 80
     instance_protocol = "http"
@@ -46,7 +50,10 @@ resource "aws_elb" "alb_webservice" {
   }
 }
 
-# This output resource get the public ip in the end of terraform command
-output "ip-web" {
-  value = aws_instance.webservice.*.public_ip
- }
+data "template_file" "init" {
+  template = file("${path.module}/cloudconfig.tpl")
+  count         = var.aws_count_instante
+  vars = {
+    index = count.index + 1
+  }
+}
