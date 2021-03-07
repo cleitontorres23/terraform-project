@@ -16,7 +16,6 @@ Here are the technologies used in this project:
 ## Services Used
  
 * Github
-* Travis.ci
 * Aws Console
 
 ## Getting started
