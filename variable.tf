@@ -17,7 +17,7 @@ variable "aws_count_instante"{
 }
 
 variable "subnet_cidr"{
-  default = ["10.10.200.0/24", "10.10.100.0/24"]
+  default = [ "10.10.100.0/24", "10.10.200.0/24"]
 }
 
 variable "azs"{
