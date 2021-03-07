@@ -60,107 +60,20 @@ Your directory structure will look similar to the one below.
 
 * main.tf: It is a best practice use this file to tell to terraform what do you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
 
-``` ruby
->    # Creating a provider aws as default
-provider "aws" {
-  region  = var.aws_region
-}
-
-# Creating a new instance of the latest Ubuntu 14.04 on an
-resource "aws_instance" "webservice" {
-  ami           = lookup(var.ami_web, var.aws_region)
-  instance_type = "t2.micro"
-  count         = var.aws_count_instante
-  user_data     =  file("cloudconfig.yaml")
-
-  tags = {
-
-    Name = "webservice-${count.index + 1}"
-  }
-
-}
-
-## Create a application load balancer 
-resource "aws_elb" "alb_webservice" {
-  name                      = "load-balancer-web"
-  internal                  = false
-  security_groups           = [aws_security_group.allow_alb.id]
-  availability_zones        = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  instances                 = aws_instance.webservice.*.id
-  
-
-  listener {
-    instance_port     = 80
-    instance_protocol = "http"
-    lb_port           = 80
-    lb_protocol       = "http"
-  }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:80/"
-    interval            = 30
-  }
-
-  tags = {
-    Environment = "production"
-  }
-}
-
-# This output resource get the public ip in the end of terraform command
-output "ip-web" {
-  value = aws_instance.webservice.*.public_ip
- }
-```
 
 * cloudconfig.tf: 
 
-``` ruby
-#cloud-config
-ssh_authorized_keys:
-  - "ssh-rsa id_rsa.pub key"
-
-runcmd:
-  - sudo -i
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  - sudo apt update -y
-  - sudo apt install docker-ce docker-ce-cli containerd.io -y
-  - sudo systemctl start docker
-  - sudo systemctl enable docker
-  - sudo docker run --name docker-nginx -d --net host nginx 
-
-write_files:
-  - path: /lib/systemd/system/nginx.service
-    permission: '0644'
-    content:  |
-        [Unit]
-        Description=The Nginx Service
-        After=docker.service syslog.target network-online.target remote-fs.target nss-lookup.target 
-        Wants=network-online.target
-        Requires=docker.service
-        
-        [Service]
-        Type=forking
-        PIDFile=/run/nginx.pid   
-        ExecStart=/usr/bin/docker run --name docker-nginx -d --net host -v /etc/nginx/nginx.conf:/etc/nginx/nginx.conf  nginx
-        
-        [Install]
-        WantedBy=multi-user.target
-    
-```
-
-
-
-
+* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services for the rest of your infrastructure.* network.tf:
 
 
 * variable.tf: Thinking about a big organization, all the codes is getting bigger and bigger, and it is not necessary to mix the
 main code with variables, once, all variables together, is easier to get some informations about it.
 
-* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services for the rest of your infrastructure.
+* outputs.tf: 
+
+* target_group.tf:
+
+* security_group.tf
 
 
 
