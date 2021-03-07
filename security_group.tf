@@ -121,6 +121,7 @@ resource "aws_network_interface_sg_attachment" "sg_nginx" {
   count = var.aws_count_instante
   }
 
+# Associate security Group for load balancer to resource webservice
 resource "aws_network_interface_sg_attachment" "sg_alb" {
 security_group_id         = aws_security_group.allow_alb.id
 network_interface_id      = element(aws_instance.webservice.*.primary_network_interface_id, count.index)
