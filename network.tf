@@ -47,11 +47,11 @@ resource "aws_internet_gateway" "gateway" {
 }
 
 resource "aws_route_table_association" "route_table_association" {
-  subnet_id      = aws_subnet.subnet.*.id
-  route_table_id = aws_route_table.route_table.*.id
+  subnet_id      = aws_subnet.subnet.id
+  route_table_id = aws_route_table.route_table.id
 }
 
 resource "aws_route_table_association" "b" {
-  gateway_id     = aws_internet_gateway.gateway.*.id
-  route_table_id = aws_route_table.route_table.*.id
+  gateway_id     = aws_internet_gateway.gateway.id
+  route_table_id = aws_route_table.route_table.id
 }
