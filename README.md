@@ -18,9 +18,13 @@ Here are the technologies used in this project:
 * Github
 * Aws Console
 
-## Getting started
+## Getting started with what we plan to do
+
+![DAP-aws](https://user-images.githubusercontent.com/23055661/110247623-e3706200-7f4b-11eb-8f46-e0b2f858c63e.jpg)
  
-At first, we need to configure the aws access and download terraform file.
+I have used awscli to authenticate on aws site, if you desire to use another way, feel free :-), I am happy to hear you trying other one. 
+
+If you want to keep in this article, let's get the ball rolling and configure the aws access.
 
 * To install awscli:
 ``` ruby
@@ -38,15 +42,15 @@ If you do not have python, and it command before have showed to you some error a
 
 ## How to use
 
-Let'go to put apart some components just to help us to understand how the drew is and make the code clear. I hope so!
+Let'go to put apart some components to help us to understand how the drew is and make the code clear. I hope so!
 
 You are going to create this files below :
 
-Your directory structure will look similar to the one below.
+Your directory structure will look like similar to the one below.
 
 ``` ruby
 ├── main.tf
-├── cloudconfig.tf
+├── cloudconfig.tpl
 ├── network.tf
 ├── variables.tf
 ├── outputs.tf
@@ -58,22 +62,20 @@ Your directory structure will look similar to the one below.
 
 # Understanding these files 
 
-* main.tf: It is a best practice use this file to tell to terraform what do you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
+* main.tf: It is a best practice use this file to tell to terraform what you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
 
 
-* cloudconfig.tf: 
+* cloudconfig.tf: I have separated some important things for our webserver works in this file, the first one is image nginx Docker(in my opnion is the more lightweight way to give live to web application *with now headaches,* another one is systemd customization invironment 
 
-* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services for the rest of your infrastructure.* network.tf:
+* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services (i.e.: subnets, route tables) for the rest of your infrastructure.
 
+* variable.tf: Thinking about a big corporation, all the codes is getting bigger and bigger, so, do not mess it up and get the control, once all variables together, is easier to get some informations about it and avoid mistakes.
 
-* variable.tf: Thinking about a big organization, all the codes is getting bigger and bigger, and it is not necessary to mix the
-main code with variables, once, all variables together, is easier to get some informations about it.
+* outputs.tf:  All the times you get to know some values you may use it to return in Terraform, ok, formal way : - is used to extract the value of an output variable from the state file
 
-* outputs.tf: 
+* target_group.tf: A target group tells a load balancer where to direct traffic, when you are creating a load balancer, you make one or more listeners and configure listener rules to direct the traffic to one target group
 
-* target_group.tf:
-
-* security_group.tf
+* security_group.tf: A security group acts as a virtual firewall for your instance controlling inbound and outbound traffic.
 
 
 
