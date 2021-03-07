@@ -9,7 +9,7 @@ This project has as goal to deploy 2 or more ec2 using terraform in the aws envi
 Here are the technologies used in this project:
   
 * terraform_0.14.7
-* awscli 1.18.69
+* awscli 1.18.69 --> **another way to authenticate? keep going and have fun**
 * Python PIP 
 * Python 2.x and 3.x
 
@@ -65,7 +65,7 @@ Your directory structure will look like similar to the one below.
 * main.tf: It is a best practice use this file to tell to terraform what you need it does for you, each resource block describes one or more infrastructure objects, such as virtual networks, compute instances, or higher-level components such as DNS records.
 
 
-* cloudconfig.tf: I have separated some important things for our webserver works in this file, the first one is image nginx Docker(in my opnion is the more lightweight way to give live to web application *with now headaches,* another one is systemd customization invironment 
+* cloudconfig.tf: I have separated some important things for our webserver works in this file, the first one is image nginx Docker(in my opnion is the more lightweight way to give live to web application *with no headaches*, another one is systemd customization environment 
 
 * network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services (i.e.: subnets, route tables) for the rest of your infrastructure.
 
