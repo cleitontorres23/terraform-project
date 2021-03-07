@@ -1,5 +1,15 @@
 # Terraform configuration
 
+# versioning control
+terraform {
+  required_providers {
+    version = {
+      source  = "hashicorp/template"
+      version = ">= 0.14"
+    }
+  }
+}
+
 # Creating a provider aws as default
 provider "aws" {
   region  = var.aws_region
