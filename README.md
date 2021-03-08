@@ -12,13 +12,14 @@ Here are the technologies used in this project:
 * awscli 1.18.69 --> **another way to authenticate? keep going and have fun**
 * Python PIP 
 * Python 2.x and 3.x
+* hashicorp/aws v3.31.0
 
 ## Services Used
  
 * Github
 * Aws Console
 
-## Getting started with what we plan to do
+## Start planning
 
 ![DAP-aws](https://user-images.githubusercontent.com/23055661/110247623-e3706200-7f4b-11eb-8f46-e0b2f858c63e.jpg)
  
@@ -31,7 +32,7 @@ If you want to keep in this article, let's get the ball rolling and configure th
 >    $ sudo apt install awscli
 ```
 
-Amazon Web Service Command Line Interface (awscli) is a command line tool (in Python module ;-)for managing and administering your Amazon Web Services.
+Amazon Web Service Command Line Interface (awscli) is a command line tool (in Python module ;-)for managing and administraring your Amazon Web Services.
 
 If you do not have python, and it command before have showed to you some error about it.
 
