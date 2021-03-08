@@ -68,13 +68,13 @@ Your directory structure will look like similar to the one below.
 
 * cloudconfig.tf: I have separated some important things for our webserver works in this file, the first one is image nginx Docker(in my opnion is the more lightweight way to give live to web application *with no headaches*, another one is systemd customization environment 
 
-* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services (i.e.: subnets, route tables) for the rest of your infrastructure.
+* network.tf: Defines a Virtual Private Cloud (VPC) and other components, which will provide networking services (i.g.: subnets, route tables) for the rest of your infrastructure.
 
 * variable.tf: Thinking about a big corporation, all the codes is getting bigger and bigger, so, do not mess it up and get the control, once all variables together, is easier to get some informations about it and avoid mistakes.
 
 * outputs.tf:  All the times you get to know some values you may use it to return in Terraform, ok, formal way : - is used to extract the value of an output variable from the state file
 
-* target_group.tf: A target group tells a load balancer where to direct traffic, when you are creating a load balancer, you make one or more listeners and configure listener rules to direct the traffic to one target group
+* target_group.tf: A target group tells to a load balancer where to direct traffic, when you are creating a load balancer, you make one or more listeners and configure listener rules to direct the traffic to one target group
 
 * security_group.tf: A security group acts as a virtual firewall for your instance controlling inbound and outbound traffic.
 
