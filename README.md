@@ -12,6 +12,7 @@ Here are the technologies used in this project:
 * awscli 1.18.69 --> **another way to authenticate? keep going and have fun**
 * Python PIP 
 * Python 2.x and 3.x
+* hashicorp/aws v3.31.0
 
 ## Services Used
  
