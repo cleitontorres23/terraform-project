@@ -68,7 +68,7 @@ Your directory structure will look like similar to the one below.
 
 * cloudconfig.tf: I have separated some important things for our webserver works in this file, the first one is image nginx Docker(in my opnion is the more lightweight way to give live to web application *with no headaches*, another one is systemd customization environment 
 
-* network.tf: defines a Virtual Private Cloud (VPC), which will provide networking services (i.e.: subnets, route tables) for the rest of your infrastructure.
+* network.tf: Defines a Virtual Private Cloud (VPC) and other components, which will provide networking services (i.g.: subnets, route tables) for the rest of your infrastructure.
 
 * variable.tf: Thinking about a big corporation, all the codes is getting bigger and bigger, so, do not mess it up and get the control, once all variables together, is easier to get some informations about it and avoid mistakes.
 
