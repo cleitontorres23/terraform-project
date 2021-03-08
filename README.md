@@ -32,7 +32,7 @@ If you want to keep in this article, let's get the ball rolling and configure th
 >    $ sudo apt install awscli
 ```
 
-Amazon Web Service Command Line Interface (awscli) is a command line tool (in Python module ;-)for managing and administering your Amazon Web Services.
+Amazon Web Service Command Line Interface (awscli) is a command line tool (in Python module ;-)for managing and administraring your Amazon Web Services.
 
 If you do not have python, and it command before have showed to you some error about it.
 
