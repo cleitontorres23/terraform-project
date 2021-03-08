@@ -19,7 +19,7 @@ Here are the technologies used in this project:
 * Github
 * Aws Console
 
-## Getting started with what we plan to do
+## Start planning
 
 ![DAP-aws](https://user-images.githubusercontent.com/23055661/110247623-e3706200-7f4b-11eb-8f46-e0b2f858c63e.jpg)
  
