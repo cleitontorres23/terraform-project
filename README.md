@@ -74,7 +74,7 @@ Your directory structure will look like similar to the one below.
 
 * outputs.tf:  All the times you get to know some values you may use it to return in Terraform, ok, formal way : - is used to extract the value of an output variable from the state file
 
-* target_group.tf: A target group tells a load balancer where to direct traffic, when you are creating a load balancer, you make one or more listeners and configure listener rules to direct the traffic to one target group
+* target_group.tf: A target group tells to a load balancer where to direct traffic, when you are creating a load balancer, you make one or more listeners and configure listener rules to direct the traffic to one target group
 
 * security_group.tf: A security group acts as a virtual firewall for your instance controlling inbound and outbound traffic.
 
