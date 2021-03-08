@@ -3,9 +3,9 @@
 # versioning control
 terraform {
   required_providers {
-    version = {
-      source  = "hashicorp/template"
-      version = ">= 0.14"
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 2.0.0, <= 3.31.0"
     }
   }
 }
