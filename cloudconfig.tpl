@@ -1,7 +1,6 @@
 #cloud-config
 ssh_authorized_keys:
-  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClIib6GO9OJ76qXo7o94VPvr8LRlWIhB1IMwhZCdUI13OaJ0lb8xpT+MF3WN93FpkKO2GDGiKRS4rtGsP6dCP4JHoaMiiDGwXXlZxh6kvpjQdxF7g15rMyQsAb/LrvZ/nV5OxQTLL4nBLY/YlNvH5WdugE81hxMtp8IUkYJpXeJfmS7T8XXDPnVPx6oCnxKqXy0GBNpJNGzVe51rLavJC2dhYYif3RBy5hxM/7AGzLNseXwv5/7t7c3cS4PMGr17HxNnOfQqQMSbbYZWcePkVlJdLxPBsvo+yNUUHEsdXzhdLdAxRLMLslLv6SVCxYFxIfYx4sR/5/eF9fytR15cjR cstsantos@cstsantos-sre"
-  
+  - "ssh-rsa id_rsa.pub "
 runcmd:
   - sudo -i
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
