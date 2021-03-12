@@ -31,6 +31,7 @@ resource "aws_subnet" "subnet" {
 
   tags = {
     Name = "subnet-${count.index}"
+    
   }
 }
 
