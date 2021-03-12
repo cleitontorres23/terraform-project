@@ -1,0 +1,27 @@
+# Define environment
+dist: xenial # Ubuntu 16.04
+language: bash
+
+branches:
+  only:
+    - main
+
+# prepare terraform apply
+before_deploy:
+  - echo "diretorio $(pwd)"
+  - wget https://releases.hashicorp.com/terraform/0.14.7/terraform_0.14.7_linux_amd64.zip -P /tmp/
+  - /usr/bin/unzip /tmp/terraform_0.14.7_linux_amd64.zip -d /tmp
+  - chmod +x /tmp/terraform
+  - rm /tmp/terraform_0.14.7_linux_amd64.zip
+  - export PATH="/tmp/:$PATH"
+
+  
+
+# terraform apply
+deploy:
+  - provider: script
+    skip_cleanup: cleanup
+    script: bash ./terraform-deploy.sh
+    on:
+      repo: cleitontorres23/terraform-project
+      branch: main
