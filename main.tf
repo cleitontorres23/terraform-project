@@ -22,7 +22,7 @@ resource "aws_instance" "webservice" {
   count         = var.aws_count_instante
   user_data     = data.template_file.init[count.index].rendered
   subnet_id     = aws_subnet.subnet[count.index].id
-
+  
   tags = {
 
     Name = "webservice-${count.index + 1}"
