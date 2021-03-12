@@ -16,9 +16,9 @@ variable "aws_count_instante"{
   default = 2
 }
 
-# Defining in a list the subnets have requested network 100 
+# Defining in a list the subnets have requested network 
 variable "subnet_cidr"{
-  default = [ "10.10.100.0/24", "10.10.200.0/24"]
+  default = ["10.10.100.0/24","10.10.200.0/24"]
 }
 
 # Defining availability zones

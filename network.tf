@@ -12,7 +12,6 @@ resource "aws_vpc" "vpc_main" {
 #Create internet gateway
 resource "aws_internet_gateway" "gateway" {
   vpc_id = aws_vpc.vpc_main.id
-  
 
   tags = {
     Name = "gateway"
@@ -31,7 +30,6 @@ resource "aws_subnet" "subnet" {
 
   tags = {
     Name = "subnet-${count.index}"
-    
   }
 }
 
