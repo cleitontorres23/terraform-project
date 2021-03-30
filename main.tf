@@ -21,7 +21,7 @@ resource "aws_instance" "webservice" {
   instance_type = "t2.micro"
   count         = var.aws_count_instante
   user_data     = data.template_file.init[count.index].rendered
-  subnet_id     = aws_subnet.subnet[count.index].id
+  subnet_id     = aws_subnet.subnet[count.index % length(var.subnet_cidr)].id
   
   tags = {
 
